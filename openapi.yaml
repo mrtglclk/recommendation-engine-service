@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: Recommendation Engine API
+  version: 1.0.0
+paths:
+  /recommendations:
+    get:
+      summary: Get recommendations for a user
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: string
+  /feedback:
+    post:
+      summary: Submit feedback for a recommendation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                recommendation_id:
+                  type: string
+                feedback_type:
+                  type: string
+      responses:
+        '200':
+          description: Feedback saved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
